@@ -101,8 +101,8 @@ public class AdministratorController {
 	 * @return ログイン後の従業員一覧画面
 	 */
 
-	//  @Autowired
-    // private ServletContext application;
+	 @Autowired
+    private ServletContext application;
 
 	@PostMapping("/login")
 	public String login(LoginForm form, RedirectAttributes redirectAttributes) {
@@ -111,8 +111,8 @@ public class AdministratorController {
 			redirectAttributes.addFlashAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
 			return "redirect:/";
 		}
-		// redirectAttributes.addFlashAttribute("administrator",administrator);
-		// application.setAttribute("administrator",administrator);
+		
+		application.setAttribute("administrator",administrator);
 		return "redirect:/employee/showList";
 	}
 
