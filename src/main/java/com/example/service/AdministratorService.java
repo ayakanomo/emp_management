@@ -19,6 +19,7 @@ public class AdministratorService {
 
 	@Autowired
 	private AdministratorRepository administratorRepository;
+    public boolean existMailAddress;
 
 	/**
 	 * 管理者情報を登録します.
@@ -40,4 +41,8 @@ public class AdministratorService {
 		Administrator administrator = administratorRepository.findByMailAddressAndPassward(mailAddress, password);
 		return administrator;
 	}
+
+	public boolean existMailAddress(String mailAddress) {
+        return administratorRepository.existMailAddress(mailAddress);
+    }
 }

@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.domain.Employee;
 import com.example.form.UpdateEmployeeForm;
 import com.example.service.EmployeeService;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 /**
  * 従業員情報を操作するコントローラー.
@@ -54,6 +57,13 @@ public class EmployeeController {
 		model.addAttribute("employeeList", employeeList);
 		return "employee/list";
 	}
+
+
+	// @RequestMapping("/serch")
+	// public String serch(String serchName){
+
+	// }
+	
 
 	/////////////////////////////////////////////////////
 	// ユースケース：従業員詳細を表示する
