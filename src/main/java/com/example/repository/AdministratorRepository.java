@@ -21,6 +21,7 @@ import com.example.domain.Administrator;
 @Repository
 public class AdministratorRepository {
 
+	
 	/**
 	 * Administratorオブジェクトを生成するローマッパー.
 	 */
@@ -94,5 +95,16 @@ public class AdministratorRepository {
 		}
 		return administratorList.get(0);
 	}
+
+
+	//Ex3用　メールアドレス重複チェック
+	public boolean existMailAddress(String mailAddress) {
+		String sql = "select count(*) from administrators where mail_address=:mailAddress";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress);
+		int count = template.queryForObject(sql, param, Integer.class);
+		return count > 0;
+	}
+
+	
 
 }
