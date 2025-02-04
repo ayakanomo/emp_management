@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.domain.Employee;
 import com.example.form.UpdateEmployeeForm;
 import com.example.service.EmployeeService;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 /**
  * 従業員情報を操作するコントローラー.
@@ -54,6 +57,19 @@ public class EmployeeController {
 		model.addAttribute("employeeList", employeeList);
 		return "employee/list";
 	}
+
+
+	@RequestMapping("/search")
+	public String search(String serchName,Model model){
+		if (serchName != null && !serchName.isEmpty()) { // serchName が null または空でない場合
+            List<Employee> employeeList = employeeService.searchByName(serchName);
+            model.addAttribute("employeeList", employeeList);
+        } else {
+            model.addAttribute("employeeList", employeeService.showList()); // 全件表示
+        }
+        return "employee/list";
+	}
+	
 
 	/////////////////////////////////////////////////////
 	// ユースケース：従業員詳細を表示する
