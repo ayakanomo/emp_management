@@ -52,4 +52,9 @@ public class EmployeeService {
 	public void update(Employee employee) {
 		employeeRepository.update(employee);
 	}
+
+	//名前検索
+	public List<Employee> searchByName(String serchName) {
+        return employeeRepository.findByNameLike(serchName);
+    }
 }

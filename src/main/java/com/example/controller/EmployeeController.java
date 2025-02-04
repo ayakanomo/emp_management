@@ -59,10 +59,16 @@ public class EmployeeController {
 	}
 
 
-	// @RequestMapping("/serch")
-	// public String serch(String serchName){
-
-	// }
+	@RequestMapping("/search")
+	public String search(String serchName,Model model){
+		if (serchName != null && !serchName.isEmpty()) { // serchName が null または空でない場合
+            List<Employee> employeeList = employeeService.searchByName(serchName);
+            model.addAttribute("employeeList", employeeList);
+        } else {
+            model.addAttribute("employeeList", employeeService.showList()); // 全件表示
+        }
+        return "employee/list";
+	}
 	
 
 	/////////////////////////////////////////////////////
